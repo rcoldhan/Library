@@ -11,33 +11,54 @@ package com.company;
  */
 
 public class Book {
-    String bookName;
+    String name;
     String author;
     int volume;
     int pages;
 
-    //конструктор без параметров
-    Book(int pagesNumber) {
-        this.pages = pagesNumber;
+    Book() {
+
     }
 
-    //конструктор с 4 параметрами
-    Book(String bookName, String author, int volumeNumber, int pagesNumber) {
-        this.bookName = bookName;
+    Book(int pages) {
+        this.pages = pages;
+    }
+
+    Book(String name, int pages) {
+        this.name = name;
+        this.pages = pages;
+    }
+
+    Book(String name, String author, int volume) {
+        this.name = name;
         this.author = author;
-        this.volume = volumeNumber;
-        this.pages = pagesNumber;
+        this.volume = volume;
     }
 
-    //конструктор с 2 параметрами
-    Book(String bookName, int pagesNumber) {
-        this.bookName = bookName;
-        this.pages = pagesNumber;
+    Book(String name, String author, int volume, int pages) {
+        this.name = name;
+        this.author = author;
+        this.volume = volume;
+        this.pages = pages;
     }
 
     @Override
     public String toString() {
-
-        return this.bookName + ", " + this.author + ", volume " + this.volume + ", " + this.pages + " pages";
+        if (name == null) {
+            name = "Без названия";
+        }
+        if (author == null) {
+            author = "Не указан";
+        }
+        if (volume < 1) {
+            volume = 0;
+        }
+        if (pages < 1) {
+            pages = 0;
+        }
+        return "Информация о книге: название = " + name +
+                ", автор = " + author +
+                ", том = " + volume +
+                ", количество страниц = " + pages;
     }
 }

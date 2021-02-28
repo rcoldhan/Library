@@ -11,13 +11,15 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-        Book[] books = {
-                new Book("War and Peace", "Lev Tolstoy", 1, 448),
-                new Book("Crime and Punishment", 567),
-                new Book(789)
+        Book[] library = {
+                new Book(),
+                new Book(-2),
+                new Book("Преступление и наказание", 567),
+                new Book("Мастер и Маргарита", "Михаил Булгаков", -3),
+                new Book("Война и мир", "Лев Толстой", 2, 448),
         };
         Reader reader = new Reader();
-        Book myBook = reader.choiceBook(books);
+        Book myBook = reader.choiceBook(library);
         reader.readBook(myBook);
         reader.rateBook(myBook);
         System.out.println(myBook);

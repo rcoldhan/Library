@@ -19,17 +19,16 @@ public class Reader {
 
     Random rnd = new Random();
 
-    public Book choiceBook(Book[] books) {
-        int index = rnd.nextInt(books.length);
-        System.out.println(index);
-        return books[index];
+    public Book choiceBook(Book[] library) {
+        int index = rnd.nextInt(library.length);
+        return library[index];
     }
 
-    public void readBook(Book book) {
-        if (book.bookName != null) {
-            System.out.println("Книга " + book.bookName + " прочитана!");
+    public void readBook(Book myBook) {
+        if (myBook.name != null) {
+            System.out.println("Книга " + myBook.name + " прочитана!");
         } else {
-            System.out.println("У прочитанной книги нет названия");
+            System.out.println("Книга без названия прочитана!");
         }
     }
 
@@ -43,32 +42,33 @@ public class Reader {
      * Оценку пользователя после подсчетов вывести в консоль с указанием названия книги.
      */
 
-    public void rateBook(Book book) {
+    public void rateBook(Book myBook) {
         int rating = 0;
-        if (book.bookName != null) {
-            rating += book.bookName.length();
+
+        if (myBook.name != null) {
+            rating += myBook.name.replaceAll("\\s", "").length();
         } else {
-            rating -= rnd.nextInt(book.pages);
+            rating -= rnd.nextInt(100);
         }
-        if (book.author != null) {
-            rating += book.author.length();
+        if (myBook.author != null) {
+            rating += myBook.author.replaceAll("\\s", "").length();
         } else {
-            rating -= rnd.nextInt(book.pages);
+            rating -= rnd.nextInt(100);
         }
-        if (book.volume != 0) {
-            rating -= book.volume;
+        if (myBook.volume > 0) {
+            rating -= myBook.volume;
         } else {
-            rating -= rnd.nextInt(book.pages);
+            rating -= rnd.nextInt(100);
         }
-        if (book.pages != 0) {
-            rating += book.pages;
+        if (myBook.pages > 0) {
+            rating += myBook.pages;
         } else {
-            rating -= rnd.nextInt(book.pages);
+            rating -= rnd.nextInt(100);
         }
-        if (book.bookName != null) {
-            System.out.println(book.bookName + ": оценка " + rating);
-        } else {
+        if (myBook.name == null) {
             System.out.println("Название неизвестно: оценка " + rating);
+        } else {
+            System.out.println(myBook.name + ": оценка " + rating);
         }
     }
 }
