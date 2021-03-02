@@ -1,15 +1,5 @@
 package com.company;
 
-/**
- * У Book есть поля (свойства книги): "Название", "Автор", "Порядковый номер в серии"
- * "Количество страниц".
- * <p>
- * Для того, чтобы можно было создавать книги с разным набором свойств,
- * у класса Book сделать перегруженные конструкторы(не менее трех).
- * <p>
- * Для красивого вывода описания книги в консоль переопределить метод toString() для класса Book;
- */
-
 public class Book {
     String name;
     String author;
@@ -44,21 +34,27 @@ public class Book {
 
     @Override
     public String toString() {
+        String result;
         if (name == null) {
-            name = "Без названия";
+            result = "Прочитана книга: название = Без названия";
+        } else {
+            result = "Прочитана книга: название = " + name;
         }
         if (author == null) {
-            author = "Не указан";
+            result += ", автор = Не указан";
+        } else {
+            result += ", автор = " + author;
         }
         if (volume < 1) {
-            volume = 0;
+            result += ", том = 0";
+        } else {
+            result += ", том = " + volume;
         }
         if (pages < 1) {
-            pages = 0;
+            result += ", количество страниц = 0";
+        } else {
+            result += ", количество страниц = " + pages;
         }
-        return "Информация о книге: название = " + name +
-                ", автор = " + author +
-                ", том = " + volume +
-                ", количество страниц = " + pages;
+        return result;
     }
 }
